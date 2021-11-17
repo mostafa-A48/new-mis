@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block title %}
+    Update Result
+{% endblock title %}
+
+
+{% block page_title %}
+    Update Result
+{% endblock page_title %}
+
+{% block breadcrumb %}
+<ol class="breadcrumb m-0">
+        <li class="breadcrumb-item"><a href="/">Create Result</a></li>
+        <li class="breadcrumb-item active">
+            Update Result
+        </li>
+</ol>
+{% endblock breadcrumb %}
+
+{% block content %}
+<div class="row">
+    <div class="col-10 m-auto">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">
+                    Update Result
+                </h4>
+                <hr>
+                <form method="POST">
+                    {% csrf_token %}
+                    {{ formset.management_form}}
+                  
+                    <table id="studenttable" class="table table-sm">
+                      <thead>
+                        <tr>
+                          <th>#</th>
+                          <th>Name</th>
+                          <th>Father Name</th>
+                          <th>Mid Term Score</th>
+                          <th>Final Exam Score</th>
+                          <th>Project Score</th>
+                          <th>Home Work Score</th>
+                          <th>Class Activity Score</th>
+                          <th>Total</th>
+                        </tr>
+                      </thead>
+                      <<tbody>
+                        {% for form in formset %}
+                        {{ form.id}}
+                          <tr>
+                            <td>{{forloop.counter }}</td>
+                            <td>{{form.instance.student }}</td>
+                            <td>{{form.instance.student.father_name }}</td>
+                            <td style="width: 10%;">{{form.mid_term_exam | add_class:"form-control form-control-sm"}}</td>
+                            <td style="width: 10%;">{{form.final_exam | add_class:"form-control form-control-sm"}}</td>
+                            <td style="width: 10%;">{{form.project_score | add_class:"form-control form-control-sm"}}</td>
+                            <td style="width: 15%;">{{form.home_work_score | add_class:"form-control form-control-sm"}}</td>
+                            <td style="width: 15%;">{{form.class_activity_score | add_class:"form-control form-control-sm"}}</td>
+                            <td style="width: 10%;">
+                              <span class="badge badge-primary badge-pill p-2">
+                                {{form.instance.total_score}}
+                              </span>
+                            </td>
+                  
+                          </tr>
+                        {% endfor %}
+                      </tbody>
+                    </table>
+                  <hr>
+                    <input type="submit" class="btn btn-primary font-size-18" value="Save">
+                    </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

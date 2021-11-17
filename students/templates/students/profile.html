@@ -1,0 +1,263 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block title %}
+    Student Profile
+{% endblock title %}
+
+
+{% block page_title %}
+    {{ request.user.username }} Profile Information
+{% endblock page_title %}
+
+{% block breadcrumb %}
+<ol class="breadcrumb m-0">
+        <li class="breadcrumb-item"><a href="">Dashboard</a></li>
+        <li class="breadcrumb-item active">
+            Profile
+        </li>
+</ol>
+{% endblock breadcrumb %}
+
+
+{% block content %}
+<script src="{% static 'assets/libs/jquery/jquery.min.js' %}"></script>
+    <div class="col-lg-10 m-auto">
+        <div class="row">
+            <div class="col-xl-4">
+                <div class="card overflow-hidden">
+                    <div class="bg-soft-primary">
+                        <div class="row">
+                            <div class="col-7">
+                                <div class="text-primary p-3">
+                                    <h5 class="text-primary">Welcome Back !</h5>
+                                    <p>To Kabul University, CSFMIS</p>
+                                </div>
+                            </div>
+                            <div class="col-5 align-self-end">
+                                <img src="{% static 'assets/images/profile-img.png' %}" alt="" class="img-fluid">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body pt-0">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="avatar-md profile-user-wid mb-4">
+                                    {% if request.user.student.avatar %}
+                                    <img src="{{ request.user.student.avatar.url }}" alt="" class="img-thumbnail rounded-circle">
+                                    {% else %}
+                                    <img src="{% static 'assets/images/users/avatar-1.jpg' %}" alt="" class="img-thumbnail rounded-circle">
+                                    {% endif %}
+                                </div>
+                                <h5 class="font-size-15 text-truncate">{{ request.user.username.title }}</h5>
+                                <p class="text-muted mb-0 text-truncate">
+                                    {{ request.user.student.department }}
+                                </p>
+                            </div>
+
+                            <div class="col-sm-8">
+                                <div class="pt-4">
+                                   
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <h5 class="font-size-15"> {{ request.user.student.semester }} </h5>
+                                            <p class="text-muted mb-0">Semester</p>
+                                        </div>
+                                        <div class="col-6">
+                                            <h5 class="font-size-15">0</h5>
+                                            <p class="text-muted mb-0">Passed Credits</p>
+                                        </div>
+                                    </div>
+                                    <div class="mt-4">
+                                        <a style="float: right;" href="{% url 'student-profile-complete' %}" class="btn btn-primary waves-effect waves-light btn-sm">Profile Detail <i class="mdi mdi-arrow-right ml-1"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end card -->
+
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title mb-4">Personal Information</h4>
+
+                        <p class="text-muted mb-4">Hi I'm Cynthia Price,has been the industry's standard dummy text To an English person, it will seem like simplified English, as a skeptical Cambridge.</p>
+                        <div class="table-responsive">
+                            <table class="table table-nowrap mb-0">
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">Full Name :</th>
+                                        <td>
+                                            {{ request.user.student.first_name }} - {{ request.user.student.last_name }}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Department :</th>
+                                        <td> {{ request.user.student.department }} </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">E-mail :</th>
+                                        <td>{{ request.user.email }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Address :</th>
+                                        <td>{{ request.user.student.address }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- end card -->
+
+                
+                <!-- end card -->
+            </div>         
+            
+            <div class="col-xl-8">
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="card mini-stats-wid">
+                            <div class="card-body">
+                                <div class="media">
+                                    <div class="media-body">
+                                        <p class="text-muted font-weight-medium">Completed Projects</p>
+                                        <h4 class="mb-0">125</h4>
+                                    </div>
+
+                                    <div class="mini-stat-icon avatar-sm align-self-center rounded-circle bg-primary">
+                                        <span class="avatar-title">
+                                            <i class="bx bx-check-circle font-size-24"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card mini-stats-wid">
+                            <div class="card-body">
+                                <div class="media">
+                                    <div class="media-body">
+                                        <p class="text-muted font-weight-medium">Pending Projects</p>
+                                        <h4 class="mb-0">12</h4>
+                                    </div>
+
+                                    <div class="avatar-sm align-self-center mini-stat-icon rounded-circle bg-primary">
+                                        <span class="avatar-title">
+                                            <i class="bx bx-hourglass font-size-24"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card mini-stats-wid">
+                            <div class="card-body">
+                                <div class="media">
+                                    <div class="media-body">
+                                        <p class="text-muted font-weight-medium">Total Revenue</p>
+                                        <h4 class="mb-0">$36,524</h4>
+                                    </div>
+
+                                    <div class="avatar-sm align-self-center mini-stat-icon rounded-circle bg-primary">
+                                        <span class="avatar-title">
+                                            <i class="bx bx-package font-size-24"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title mb-4">Revenue</h4>
+                        <div id="revenue-chart" class="apex-charts"></div>
+                    </div>
+                </div> -->
+                
+
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title mb-4">My Courses</h4>
+                        <div class="table-responsive">
+                            <table class="table table-nowrap table-hover mb-0">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Course Name</th>
+                                        <th scope="col">Course Creation Date</th>
+                                        <th scope="col">Course Instructor</th>
+                                        <th scope="col">Last Visit</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for course in courses %}
+                                        <tr class="clickable-row" data-href="{% url 'student-course-detail' course.pk %}">
+                                            <td>{{ forloop.counter }}</td>
+                                            <td> {{ course.title }} </td>
+                                            <td> {{ course.created_at|date:"Y M, d" }} </td>
+                                            <td> {{ course.owner.username }} </td>
+                                            <td> {{ course.visited_at|timesince }} ago </td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title mb-5">Interesting Topics</h4>
+                        <div class="">
+                            {% for category in categories %}
+                    <ul class="verti-timeline list-unstyled my-2">
+                        <li class="event-list active">
+                            <div class="event-timeline-dot">
+                                <i class="bx bx-right-arrow-circle bx-fade-right" dir="rtl"></i>
+                            </div>
+                            <div class="media">
+                                <div class="mr-3">
+                                    <i class="bx bx-server h4 text-primary" dir="rtl"></i>
+                                </div>
+                                <div class="media-body">
+                                    <div>
+                                        <h5 class="font-size-15"><a href="#" class="text-dark">
+                                            {{ category }}
+                                        </a>
+                                       {% for i in user.student.interests.all %}
+                                            {% if i.category == category %}
+                                                <ul>
+                                                    <li> {{ i }} </li>
+                                                </ul>
+                                            {% endif %}
+                                       {% endfor %}
+                                    </h5>
+                                       
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                    {% endfor %}
+                        </div>
+                    </div>
+                </div>  
+            </div>
+        </div>
+    </div>
+    <script>
+        (function ($) {
+          $('.clickable-row').css('cursor', 'pointer');
+          $(".clickable-row").click(function () {
+            window.location = $(this).data("href");
+          });
+        })(jQuery)
+    
+    </script>
+{% endblock content %}
