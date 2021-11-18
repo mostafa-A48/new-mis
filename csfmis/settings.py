@@ -168,13 +168,14 @@ LOGIN_URL = "login"
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
+STATIC_ROOT = "/var/www/pro-mis.herokuapp.com/static/"
 STATIC_URL = '/static/'
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static"),
-    'desktop/MCIT/students/static/',
+    os.path.join(BASE_DIR, "static")
 ]
+
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 
