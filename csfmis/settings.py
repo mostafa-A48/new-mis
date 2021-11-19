@@ -13,8 +13,9 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 from pathlib import Path
 import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
@@ -23,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-xjgja06iot92t0#===*q3s9l6)v(w=2jjt7zd#*onybs1e95_-'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
@@ -168,13 +169,10 @@ LOGIN_URL = "login"
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
-STATIC_ROOT = 'staticfiles/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static")
-]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
