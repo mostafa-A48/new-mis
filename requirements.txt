@@ -1,7 +1,7 @@
 ﻿asgiref==3.4.0
 backports.zoneinfo==0.2.1
 Deprecated==1.2.13
-Django==3.2.13
+Django==3.2.14
 django-appconf==1.0.5
 django-ckeditor==6.1.0
 django-crispy-forms==1.13.0
